@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator BMI</title>
+</head>
+<body>
+
+<h2>Kalkulator BMI</h2>
+
+<form>
+    Waga (kg):<br>
+    <input type="number" id="waga"><br><br>
+
+    Wzrost (cm):<br>
+    <input type="number" id="wzrost"><br><br>
+
+    <input type="button" value="Oblicz BMI" onclick="obliczBMI()">
+</form>
+
+<p id="wynik"></p>
+
+<section>
+    <h2>Kalkulator</h2>
+
+    <input type="number" id="a" placeholder="Liczba A">
+    <input type="number" id="b" placeholder="Liczba B"><br>
+
+    <button onclick="dodaj()">+</button>
+    <button onclick="odejmij()">-</button>
+    <button onclick="pomnoz()">*</button>
+    <button onclick="podziel()">/</button>
+
+    <p>Wynik: <span id="wynik"></span></p>
+</section>
+
+<script>
+    
+    function dodaj() {
+        let a = Number(document.getElementById("a").value);
+        let b = Number(document.getElementById("b").value);
+        document.getElementById("wynik").innerText = a + b;
+    }
+
+    function odejmij() {
+        let a = Number(document.getElementById("a").value);
+        let b = Number(document.getElementById("b").value);
+        document.getElementById("wynik").innerText = a - b;
+    }
+
+    function pomnoz() {
+        let a = Number(document.getElementById("a").value);
+        let b = Number(document.getElementById("b").value);
+        document.getElementById("wynik").innerText = a * b;
+    }
+
+    function podziel() {
+        let a = Number(document.getElementById("a").value);
+        let b = Number(document.getElementById("b").value);
+        if (b === 0) {
+            document.getElementById("wynik").innerText = "Nie dziel przez zero!";
+        } else {
+            document.getElementById("wynik").innerText = a / b;
+        }
+    }
+<script>
+function obliczBMI() {
+    var waga = document.getElementById("waga").value;
+    var wzrost = document.getElementById("wzrost").value;
+
+    // zamiana cm na metry
+    wzrost = wzrost / 100;
+
+    var bmi = waga / (wzrost * wzrost);
+    var opis = "";
+
+    if (bmi < 18.5) {
+        opis = "Niedowaga";
+    } else if (bmi < 25) {
+        opis = "Waga prawidłowa";
+    } else if (bmi < 30) {
+        opis = "Nadwaga";
+    } else {
+        opis = "Otyłość";
+    }
+
+    document.getElementById("wynik").innerHTML =
+        "Twoje BMI: " + bmi.toFixed(2) + "<br>" +
+        "Klasyfikacja: " + opis;
+}
+</script>
+
+</body>
+</html>
+
